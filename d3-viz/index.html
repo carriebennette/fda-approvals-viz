@@ -1,0 +1,49 @@
+<html>
+<head>
+
+    <title>Visualizing a Decade of Drug Approvals</title>
+
+    <!-- D3 -->
+    <script type="text/javascript" src = "https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- CSS -->
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Slabo+13px&display=swap" rel="stylesheet">
+
+<style  type = "text/css">
+</style>
+
+</head>
+<body>
+
+<div id="intro">
+  <h1> A Decade of Drug Approvals </h1>
+  <p> The 2010s was a ground-breaking decade for the life science industry with the Food & Drug Association approving a large number of innovative new therapies. Here is a visualization of every <a href = "https://en.wikipedia.org/wiki/New_chemical_entity" target = "_new">New Molecular Entity</a> approved, with larger circles representing a greater number of patients included in the clinical trial(s) supporting approval. </p> 
+  <p class = "hover"> Hover over any circle to see more details. </p>
+</div>
+
+<div id="legend">
+  <br><br>
+</div>
+
+<script src="js/load_data.js"></script>
+
+<script src="js/main_script.js"></script>
+
+<div id ="tooltip" class="hidden">
+  <p>Heading</p>
+  <p><span id="company">Merck</span></p>
+</div>
+
+</body>
+
+<!-- Footer -->
+<div class="footer">Created by <a href="https://carriebennette.github.io">Carrie Bennette</a> | Additional details and all code used to obtain, clean and visualize the data are available <a href="https://github.com/carriebennette/fda-data-viz" target="_blank">here</a>.
+</div>
+
+</html>

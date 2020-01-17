@@ -1,0 +1,126 @@
+
+body {
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  font-family: 'Slabo 27px', serif;
+  color: #242424;
+  font-weight: 300;
+  font-size: 37px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+a, a:link, a:visited, a:active {
+    color: #242424;
+    border-bottom: 1px dotted rgba(36, 36, 36, .4);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #242424;
+    border-bottom: 1px solid rgba(36, 36, 36, .75);
+    text-decoration: none;
+}
+
+
+#intro {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 25px;
+}
+
+#intro p {
+  margin-top: 0px;
+  max-width: 1600px;
+  line-height: 140%
+}
+
+.hover {
+  color: #4f4f4f;
+  font-size: 11px;
+}
+
+.active {
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.links line {
+  stroke: #aaa;
+}
+
+.nodes circle {
+  pointer-events: all;
+  stroke: none;
+  stroke-width: 20px;
+}
+
+
+.xaxis {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: rgba(60, 60, 60, 1);
+}
+
+.yaxis {
+  font-family: 'Montserrat', sans-serif;
+  font-size:  13px;
+  text-align: left;
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.45;
+  shape-rendering: crispEdges;
+}
+
+#tooltip {
+  position: absolute;
+  font-family: 'Montserrat', sans-serif;
+  width: 320px;
+  height: auto;
+  padding: 5px;
+  text-anchor: middle;
+  background-color: rgba(245, 245, 245, 0.6);
+  text-shadow: 0 1px 3px white, 1px 0 3px white, -1px 0 3px white, 0 -1px 3px white;
+  box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.1);
+  pointer-events: none;
+}
+
+#tooltip.hidden {
+  display: none;
+}
+
+.tooltip-drugname {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  line-height: 1px;
+  font-size: 16px;
+}
+
+.tooltip-top {
+  font-size: 12px;
+  padding-top: 7px;
+  line-height: 12px;
+  text-align: center;
+  padding-bottom: 0px;
+}
+
+.tooltip-description {
+  line-height: 12px;
+  font-size: 10px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer {
+  margin: 20px;
+  font-size: 13px;
+  font-family: 'Slabo 13px', sans-serif;
+}
+
+
