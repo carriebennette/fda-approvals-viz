@@ -71,7 +71,7 @@ svg.append("g")
    // get ride of vertical line
    .call(g => g.select(".domain").remove())
       .selectAll(".tick text")
-    .call(wrap, 160);
+    .call(wrap, 200);
 
   // add Y gridlines
   svg.append("g") 
@@ -141,9 +141,9 @@ function wrap(text, width) {
     while (word = words.pop()) {
       line.push(word);
       tspan.text(line.join(" "));
-      if (tspan.node().getComputedTextLength() > width) {
+      if (tspan.node().getComputedTextLength() >= width) {
         // only if multiple lines, shift first part of wrap "up"
-        tspan = text.text(null).append("tspan").attr("y", ++lineNumber * -lineHeight);
+        tspan = text.text(null).append("tspan").attr("y", ++lineNumber * -lineHeight).attr("x", x);
         line.pop();
         tspan.text(line.join(" "));
         line = [word];
