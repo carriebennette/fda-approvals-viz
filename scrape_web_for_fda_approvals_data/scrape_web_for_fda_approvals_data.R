@@ -206,7 +206,7 @@ write_csv(fda_products, "fda_approval_data.csv")
 # Raxibacumab is a human monoclonal antibody intended for the prophylaxis and treatment of inhaled anthrax (manually add)
 # Omegaven is a fatty acid emulsion used for total parenteral nutrition ((manually add)
 
-manually_curated_data <- read_csv("manually_curated_patient_numbers.csv") %>%
+manually_curated_data <- read_csv("manually_curated_data.csv") %>%
   mutate(dates_clean = as.Date(approval_date, "%m/%d/%y")) %>%
   select(-1, -`Biosimilar or new formulation?`, -approval_date, -generic_name, -NCTid_1, -NCTid_2, -NCTid_3, -NCTid_4, -NCTid_5, -NCTid_6, -X34, -X35) %>%
   mutate(outer_radius = total_pts_rct,
@@ -215,7 +215,7 @@ manually_curated_data <- read_csv("manually_curated_patient_numbers.csv") %>%
   filter(!is.na(brand_name)) %>%
   mutate(category = case_when((rowSums(.[2:15], na.rm = TRUE) > 1) | 
                                 (ATC_G == TRUE | ATC_H == TRUE | ATC_P == TRUE | ATC_V == TRUE | ATC_S == TRUE) ~ 10, #groups with <10 or combos
-                                (ATC_A == TRUE) ~ 2,
+                                  (ATC_A == TRUE) ~ 2,
                                 (ATC_B == TRUE) ~ 3,
                                 (ATC_C == TRUE) ~ 4, 
                                 (ATC_D == TRUE) ~ 5,
@@ -223,7 +223,7 @@ manually_curated_data <- read_csv("manually_curated_patient_numbers.csv") %>%
                                 (ATC_L == TRUE) ~ 7,
                                 (ATC_M == TRUE) ~ 8,
                                 (ATC_N == TRUE) ~ 1,
-                                (ATC_R == TRUE) ~ 10,
+                                (ATC_R == TRUE) ~ 9,
                                 TRUE ~ 11))
 
 data_export <- manually_curated_data %>%
