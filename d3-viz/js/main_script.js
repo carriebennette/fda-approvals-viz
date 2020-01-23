@@ -4,7 +4,7 @@
 
 var margin = {top: 20, right: 10, bottom: 20, left: 250};
 
-var width = 1000,
+var width = 1050,
     height = 625;
 
 var svg = d3.select("body").append("svg").attr("width",width)
