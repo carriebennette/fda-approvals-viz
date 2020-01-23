@@ -62,8 +62,6 @@ var yAxis = d3.axisLeft()
               // and hide ticks (will use grid lines)
               .tickSize(0);
 
-
-
 svg.append("g")
    .attr("class", "yaxis")
    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -71,7 +69,7 @@ svg.append("g")
    // get ride of vertical line
    .call(g => g.select(".domain").remove())
       .selectAll(".tick text")
-    .call(wrap, 200);
+    .call(wrap, 210);
 
   // add Y gridlines
   svg.append("g") 
