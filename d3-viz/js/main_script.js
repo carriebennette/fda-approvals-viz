@@ -2,7 +2,7 @@
 /////////////// set up SVG ////////////////////
 ///////////////////////////////////////////////
 
-var margin = {top: 20, right: 10, bottom: 20, left: 250};
+var margin = {top: 20, right: 10, bottom: 20, left: 270};
 
 var width = 1050,
     height = 625;
@@ -20,8 +20,8 @@ var yearScale = d3.scaleLinear()
            .range([0, width - margin.left]);
     
 var rScale = d3.scaleSqrt()
-    .domain([0, 30000])
-    .range([0, 25]);
+    .domain([2, 25, 250, 2500, 25000])
+    .range([0.26, 0.83, 2.6, 8.3, 26]);
 
 var colorScale = d3.scaleLinear()
     .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -69,7 +69,7 @@ svg.append("g")
    // get ride of vertical line
    .call(g => g.select(".domain").remove())
       .selectAll(".tick text")
-    .call(wrap, 210);
+    .call(wrap, 200);
 
   // add Y gridlines
   svg.append("g") 
@@ -101,6 +101,7 @@ var simulation = d3.forceSimulation(nodeData)
 // plug in the data
 var node = svg.selectAll("circle").data(nodeData)
           .enter().append("circle")
+            .attr("class", "main_viz")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .attr("r",function(d){ return rScale(d.r);})
             .attr("cx",function(d){ return yearScale(d.x);})
@@ -118,6 +119,39 @@ function ticked(){
 
 simulation.on("tick",ticked);
 
+
+///////////////////////////////////////////////
+/////////////// create legend /////////////////
+///////////////////////////////////////////////
+
+var sizeLegend = svg.append("g")
+    .attr("class", "size-legend")
+    .attr("transform", "translate(" + width/2.5 + "," + (height - margin.top*2.4) + ")");
+
+  sizeLegend.append("text")
+    .attr("class", "legend-title")
+    .attr("x", 0)
+    .attr("y", -35)
+    .text("Number of patients in clinical trial(s) supporting approval:");
+
+  var sizeDistance = [-1000, 60, 120, 200, 300]; //moving first one off the viewport on purpose
+  sizeLegend.selectAll(".approval-size")
+    .data(rScale.range())
+    .enter().append("circle")
+    .attr("class", "approval-size")
+    .attr("cx", function(d,i) { return sizeDistance[i]; })
+    .attr("r", function(d) { return d; });
+
+  //Add numbers below
+  var sizeFont = [10, 11, 12, 13, 14];
+  sizeLegend.selectAll(".approval-legend-value")
+    .data(rScale.domain())
+    .enter().append("text")
+    .attr("class", "approval-legend-value")
+    .attr("x", function(d,i) { return sizeDistance[i] ; })
+    .attr("y", 45)
+    .style("font-size", function(d,i) { return sizeFont[i]; })
+    .text(function(d) { return d; })
 
 ///////////////////////////////////////////////
 /////////////// extra functions ///////////////
@@ -155,7 +189,7 @@ function wrap(text, width) {
 //Returns an event handler for fading non-hovered circles
 function fade(opacity) {
   return function(d,i) {
-    svg.selectAll("circle")
+    svg.selectAll("circle.main_viz")
         .filter(function(d) { return d.index != i; })
     .transition()
         .style("opacity", 0.6);
@@ -165,7 +199,7 @@ function fade(opacity) {
 //Highlight hovered over bubble
 function mouseoverBubble(d,i) {
 
-  svg.selectAll("circle")
+  svg.selectAll("circle.main_viz")
     .transition().duration(200)
     .style("opacity", 0.45);
   

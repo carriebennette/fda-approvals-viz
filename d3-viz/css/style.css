@@ -25,7 +25,6 @@ a:hover {
     text-decoration: none;
 }
 
-
 #intro {
   font-family: 'Montserrat', sans-serif;
   margin-top: 30px;
@@ -39,12 +38,12 @@ a:hover {
   line-height: 140%;
 }
 
-
 svg {
   display: block;
   margin: 0 auto;
   padding-right: 160px;
 }
+
 
 .hover {
   color: #4f4f4f;
@@ -58,12 +57,6 @@ svg {
 
 .links line {
   stroke: #aaa;
-}
-
-.nodes circle {
-  pointer-events: all;
-  stroke: none;
-  stroke-width: 20px;
 }
 
 .xaxis {
@@ -123,8 +116,23 @@ svg {
   font-family: 'Roboto', sans-serif;
 }
 
+.legend-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+}
+
+.approval-size {
+  fill: #b5b5b5;
+}
+
+.approval-legend-value {
+    font-family: 'Slabo 13px', sans-serif;
+    text-anchor: middle;
+    color: #3d3d3d;
+}
+
 .footer {
-  margin: 20px;
+  margin: 30px;
   font-size: 13px;
   font-family: 'Slabo 13px', sans-serif;
 }
