@@ -113,8 +113,6 @@ generic_name <- str_match(scraped_data$description, "\\(([^()]*)\\)") %>%
          generic_name_fw = str_extract(generic_name, '\\w*')) %>%
   select(generic_name, generic_name_fw)
 
-## TODO: fix up description for June 2006 Gardsail (important update): In December 2014, the FDA announced the approval of Gardasil 9 for the prevention of cervical, vulvar, vaginal, and anal cancers caused by HPV types 6, 11, 16, 18, 31, 33, 45, 52 and 58. Gardasil 9 adds protection against five additional HPV types - 31, 33, 45, 52 and 58 - which cause approximately 20 percent of cervical cancers.
-
 scraped_data_generic <- cbind(scraped_data, generic_name)
 
 # load in ATC categories for drugs (link on CUI) 
@@ -234,13 +232,24 @@ data_export <- manually_curated_data %>%
          y = 100) %>%
   select(x, y, r, category, company, dates_clean, brand_name, condition, description, middle_radius, inner_radius) 
 
+
 json_names <- jsonlite::toJSON(data_export, dataframe = 'rows', pretty = TRUE)
 write(json_names, "../d3-viz/temp.json")
 
 
+# want to look at change over time in number of patients studied for each drug approval:
+ggplot(manually_curated_data) +
+  geom_smooth(aes(x = dates_clean, y = total_pts_rct), span = 0.8, color = "red", level = 0.95) 
+  
 
+temp <- manually_curated_data %>% 
+  group_by(time = as.yearmon(dates_clean)) %>% 
+  summarise(count = n(),
+            avg = mean(total_pts_rct))
 
-
+ggplot(temp, aes(x = time, y = count)) +
+  geom_smooth() +
+  geom_point()
 
 ggplot(manually_curated_data, aes(x = dates_clean, y = as.factor(color_code))) +
   geom_point(size = manually_curated_data$outer_radius/500,
