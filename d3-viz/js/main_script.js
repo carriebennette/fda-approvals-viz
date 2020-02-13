@@ -45,12 +45,12 @@ svg.append("g")
 
 // set the labels to be used for y-axis
 var yLabels = ["Nervous system",
-               "Alimentary tract and metabolism", 
-               "Blood and blood forming organs", 
+               "Alimentary tract & metabolism", 
+               "Blood & blood forming organs", 
                "Cardiovascular system", 
                "Dermatologicals", 
                "Antiinfectives", 
-               "Antineoplastic and immunomodulating agents", 
+               "Antineoplastic & immunomodulators", 
                "Musculo-skeletal system", 
                "Respiratory system", 
                "Other (various)"];
@@ -69,7 +69,7 @@ svg.append("g")
    // get ride of vertical line
    .call(g => g.select(".domain").remove())
       .selectAll(".tick text")
-    .call(wrap, 200);
+   
 
   // add Y gridlines
   svg.append("g") 
@@ -156,35 +156,6 @@ var sizeLegend = svg.append("g")
 ///////////////////////////////////////////////
 /////////////// extra functions ///////////////
 ///////////////////////////////////////////////
-
-// wraps text for labels
-function wrap(text, width) {
-  text.each(function() {
-    var text = d3.select(this),
-        words = text.text().split(/\s+/).reverse(),
-        word,
-        line = [],
-        lineNumber = 0,
-        lineHeight = 5.5, // ems
-        x = text.attr("x"),
-        dx = parseFloat(text.attr("dx")),
-        //updated so that text span Y-axis (vs x-axis) and was centered vertically
-        tspan = text.text(null).append("tspan").attr("y", 0);
-    while (word = words.pop()) {
-      line.push(word);
-      tspan.text(line.join(" "));
-      if (tspan.node().getComputedTextLength() >= width) {
-        // only if multiple lines, shift first part of wrap "up"
-        tspan = text.text(null).append("tspan").attr("y", ++lineNumber * -lineHeight).attr("x", x);
-        line.pop();
-        tspan.text(line.join(" "));
-        line = [word];
-        // shift second part of wrap "down"
-        tspan = text.append("tspan").attr("y", ++lineNumber * lineHeight).attr("x", x);
-      }
-    }
-  });
-}
 
 //Returns an event handler for fading non-hovered circles
 function fade(opacity) {
