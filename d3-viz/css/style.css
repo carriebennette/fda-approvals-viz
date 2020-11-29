@@ -30,14 +30,12 @@ a:hover {
 
 #intro {
   font-family: 'Montserrat', sans-serif;
-  margin: 2% 5% 3% 7%; 
+  margin: 0% 0% 0% 5%; 
 }
-
 
 svg {
   display: inline-block;
   margin: 0 auto;
-  padding-right: 60px;
 }
 
 .hover {
