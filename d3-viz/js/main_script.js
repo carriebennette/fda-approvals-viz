@@ -2,13 +2,14 @@
 /////////////// set up SVG ////////////////////
 ///////////////////////////////////////////////
 
-var margin = {top: 20, right: 10, bottom: 20, left: 270};
+var margin = {top: 20, right: 10, bottom: 20, left: 250};
 
 var width = 1050,
     height = 625;
 
-var svg = d3.select("body").append("svg").attr("width",width)
-            .attr("height",height);
+var svg = d3.select("body").append("svg")
+            .attr("viewBox", `0 0 ${width} ${height}`)
+
 
 ///////////////////////////////////////////////
 ////////////// set up scales //////////////////
